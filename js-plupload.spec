@@ -1,12 +1,13 @@
 %define		ver	%(echo %{version} | tr . _)
+%define		plugin	plupload
 Summary:	Multiple file upload utility using Flash, Silverlight, Google Gears, HTML5 or BrowserPlus
-Name:		js-plupload
-Version:	1.5.2
+Name:		js-%{plugin}
+Version:	1.5.3
 Release:	1
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	https://github.com/downloads/moxiecode/plupload/plupload_%{ver}.zip
-# Source0-md5:	359090ecc1047c12cff09a8693e5deab
+# Source0-md5:	7cbc00bbf7b42a995cb84b6a6539b0cb
 Source1:	apache.conf
 Source2:	lighttpd.conf
 URL:		http://www.plupload.com/
@@ -29,6 +30,14 @@ features like multiple file selection, file type filtering, request
 chunking, client side image scaling and it uses different runtimes to
 achieve this such as HTML 5, Silverlight, Flash, Gears and
 BrowserPlus.
+
+%package demo
+Summary:	Demo for %{plugin}
+Group:		Development
+Requires:	%{name} = %{version}-%{release}
+
+%description demo
+Demonstrations and samples for %{plugin}.
 
 %prep
 %setup -qc
@@ -85,19 +94,27 @@ rm -rf $RPM_BUILD_ROOT
 %lang(cs) %{_appdir}/i18n/cs.js
 %lang(da) %{_appdir}/i18n/da.js
 %lang(de) %{_appdir}/i18n/de.js
+%lang(el) %{_appdir}/i18n/el.js
 %lang(es) %{_appdir}/i18n/es.js
+%lang(et) %{_appdir}/i18n/et.js
+%lang(fa) %{_appdir}/i18n/fa.js
 %lang(fi) %{_appdir}/i18n/fi.js
 %lang(fr) %{_appdir}/i18n/fr.js
+%lang(fr_CA) %{_appdir}/i18n/fr-ca.js
 %lang(hr) %{_appdir}/i18n/hr.js
 %lang(hu) %{_appdir}/i18n/hu.js
 %lang(it) %{_appdir}/i18n/it.js
 %lang(ja) %{_appdir}/i18n/ja.js
+%lang(ko) %{_appdir}/i18n/ko.js
 %lang(lv) %{_appdir}/i18n/lv.js
 %lang(nl) %{_appdir}/i18n/nl.js
+%lang(pl) %{_appdir}/i18n/pl.js
 %lang(pt_BR) %{_appdir}/i18n/pt-br.js
 %lang(ro) %{_appdir}/i18n/ro.js
 %lang(ru) %{_appdir}/i18n/ru.js
 %lang(sr) %{_appdir}/i18n/sr.js
 %lang(sv) %{_appdir}/i18n/sv.js
 
+%files demo
+%defattr(644,root,root,755)
 %{_examplesdir}/%{name}-%{version}
