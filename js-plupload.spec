@@ -3,7 +3,7 @@
 Summary:	Multiple file upload utility using Flash, Silverlight, Google Gears, HTML5 or BrowserPlus
 Name:		js-%{plugin}
 Version:	1.5.3
-Release:	1
+Release:	3
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	https://github.com/downloads/moxiecode/plupload/plupload_%{ver}.zip
