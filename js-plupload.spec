@@ -3,21 +3,19 @@
 Summary:	Multiple file upload utility using Flash, Silverlight, Google Gears, HTML5 or BrowserPlus
 Name:		js-%{plugin}
 Version:	1.5.3
-Release:	2
+Release:	1
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	https://github.com/downloads/moxiecode/plupload/plupload_%{ver}.zip
 # Source0-md5:	7cbc00bbf7b42a995cb84b6a6539b0cb
 Source1:	apache.conf
 Source2:	lighttpd.conf
-Source3:	httpd.conf
 URL:		http://www.plupload.com/
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	unzip
 Requires:	webapps
 Requires:	webserver(access)
 Suggests:	jquery
-Conflicts:	apache-base < 2.4.0-1
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -55,7 +53,7 @@ cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/lighttpd.conf
-cp -p %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
+cp -p $RPM_BUILD_ROOT%{_sysconfdir}/{apache,httpd}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -66,10 +64,10 @@ rm -rf $RPM_BUILD_ROOT
 %triggerun -- apache1 < 1.3.37-3, apache1-base
 %webapp_unregister apache %{_webapp}
 
-%triggerin -- apache-base
+%triggerin -- apache < 2.2.0, apache-base
 %webapp_register httpd %{_webapp}
 
-%triggerun -- apache-base
+%triggerun -- apache < 2.2.0, apache-base
 %webapp_unregister httpd %{_webapp}
 
 %triggerin -- lighttpd
